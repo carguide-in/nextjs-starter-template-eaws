@@ -1,6 +1,19 @@
 'use client'; // Enables interactivity
 
 import React from 'react';
+import { useEffect, useState } from 'react';
+
+// Inside Home function:
+const [cars, setCars] = useState([]);
+
+useEffect(() => {
+  // Fetch from Catalyst - replace with your Function URL
+  fetch('https://carguideindia-60057529683.development.catalystserverless.in/server/GetBasaltVariantsByMileage/execute') // E.g., query Cars table
+    .then(res => res.json())
+    .then(data => setCars(data));
+}, []);
+
+// Then display below bubbles: <div>{cars.map(car => <p key={car.ModelID}>{car.ModelName}</p>)}</div>
 
 export default function Home() {
   return (
