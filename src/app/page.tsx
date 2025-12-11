@@ -2,8 +2,18 @@
 
 import React, { useEffect, useState } from 'react';
 
+// Define the shape of your fetched data (from ZCQL query)
+interface Variant {
+  Variants: {
+    VariantID: string;
+  };
+  Fuel: {
+    FuelEfficiency: number; // Or string if it's text
+  };
+}
+
 export default function Home() {
-  const [variants, setVariants] = useState([]); // Holds our fetched variants
+  const [variants, setVariants] = useState<Variant[]>([]); // Typed array for TS happiness
   const [loading, setLoading] = useState(true); // Shows loading while fetching
 
   useEffect(() => {
